@@ -2,9 +2,14 @@ import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import App from '../../App';
-import { Error , Header, Loader } from '../index';
+import { Error , Header, Loader, Navigation } from '../index';
+import { Router } from "@reach/router";
 
 import { blockList }  from '../../blocklist';
+
+import {
+  About
+} from '../../pages'
 
 const Restrict = (props) => {
   const [blocked , setBlock ] = useState(true);
@@ -28,21 +33,37 @@ const Restrict = (props) => {
     fetchData();
   }, []);
 
-  return(      
-    <Fragment>    
-      {!isLoading ? (
-        (!blocked ? (
-          <Fragment>
-            <Header/>
-            <App/>
-          </Fragment>
-        ): (
+  return(     
+    <div>
+      <Navigation/>
+
+      
+      <Router>
+        <About path="/about" />
+      </Router>
+
+
+
+      <Fragment>    
+        {!isLoading ? (
+          (!blocked ? (
+            <Fragment>
+              <Header/>
+              <App/>
+            </Fragment>
+          ): (
             <Error/>
-        ))
-      ): (
-      <Loader/>
-      )}
-    </Fragment>
+          ))
+        ): (
+        <Loader/>
+        )}
+      </Fragment>
+
+
+
+
+
+      </div>
   )
 }
 export default Restrict;
