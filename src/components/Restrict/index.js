@@ -8,7 +8,8 @@ import { Router } from "@reach/router";
 import { blockList } from '../../blocklist';
 
 import {
-  About
+  About,
+  Home
 } from '../../pages'
 
 const Restrict = (props) => {
@@ -38,6 +39,7 @@ const Restrict = (props) => {
       <Navigation />
       <Router>
         <About path="/about" />
+        <Home path="/home"/>
       </Router>
       <Fragment>
         {!isLoading ? (
